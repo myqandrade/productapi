@@ -24,9 +24,16 @@ public class ProductController {
         return productRepository.findAll();
     }
 
+    @GetMapping("/{id}")
+    @ResponseStatus(OK)
+    public Product getProductById(@PathVariable Long id){
+        var product = productRepository.findById(id);
+        return product.get();
+    }
+
     @PostMapping
     @ResponseStatus(CREATED)
-    public void create(@RequestBody Product product){
+    public void createProduct(@RequestBody Product product){
         productRepository.save(product);
     }
 }
